@@ -25,8 +25,8 @@ class WeatherApp:
     def __init__(self, display, requests):
         self.zip_code = DEFAULT_ZIP_CODE
         self.country_code = DEFAULT_COUNTRY.upper()
-        self.location = self.get_location()
         self.requests = requests
+        self.location = self.get_location()
         self.display = display
         self.last_update_time = time.monotonic()
         self.font = bitmap_font.load_font("../fonts/5x8.bdf", displayio.Bitmap)
@@ -54,7 +54,8 @@ class WeatherApp:
 
     def fetch_weather_data(self):
         if not self.location:
-            location = self.get_location()
+            self.location = self.get_location()
+        location = self.location
         if not location:
             return None
 
